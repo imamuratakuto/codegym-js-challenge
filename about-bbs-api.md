@@ -1,0 +1,155 @@
+## 課題概要
+
+- web ブラウザを使って全ての api をコール出来るように HTML/JavaScript を作成してください。
+- レスポンスは console に出力してください。console への出力に加えて html を描画してもよいです。
+- リスト取得の api では、ページ番号、1 ページあたりの取得件数、検索キーワードをそれぞれ指定できるようにしてください。
+- 本課題の通信処理の実装において jQuery や Vue.js 等のライブラリ(フレームワーク)を使用することは禁止します。
+  - web デザイン用に Bootstrap を使用することは許可します。その他のライブラリを使用したい場合は講師にご相談ください。
+- JavaScript の次の機能の使用を推奨します。
+  - fetch
+  - URLSearchParams
+  - localStorage
+  - JSON.stringify
+
+## api 備考
+
+- `/register`(新規登録)と`/login`(ログイン)以外の api は、ログインによって取得した token をリクエストヘッダに含める必要があります。
+  - 例) ログインして取得した token が`"2|gnd6RbieiSxTGsWVL3MBR6q7RMp370Kk9s27qgS5"`の場合、リクエストヘッダは次のようになります。
+    ```
+    {"Authorization": "Bearer 2|gnd6RbieiSxTGsWVL3MBR6q7RMp370Kk9s27qgS5"}
+    ```
+- リスト取得の api では、 1 ページあたりの取得件数`per_page`とページ番号`page`をそれぞれ任意で指定できます。
+  - `per_page`に 100 以上の値を指定した場合は 100 とみなされます。
+  - 例) スレッド一覧を取得する際に、1 ページあたりの取得件数 50 かつページ番号 13 を指定する場合の url は次のようになります。
+    ```
+    /threads?per_page=50&page=13
+    ```
+
+## api 解説
+
+- `/login`
+  - 概要: トークンを発行する。自分の過去のトークンは全て失効する。
+  - method: post
+  - body:
+    - name
+    - password
+  - response:
+    - トークン
+- `/register`
+  - 概要: ユーザを新規登録する。トークンは発行されない。
+  - method: post
+  - body:
+    - name
+      - 最大 16 文字
+      - unique
+    - bio
+      - 最大 128 文字
+    - password
+  - response:
+    - モデル
+- `/logout`
+  - 概要: 自分のトークンを全て失効させる。
+  - method: post
+  - response:
+    - メッセージ
+- `/users/{id}`
+  - 概要: ユーザを取得する。
+  - method: get
+  - url parameter:
+    - id
+  - response:
+    - モデル
+- `/users`
+  - 概要: ユーザ一覧を取得する。
+  - method: get
+  - query string:
+    - q (任意)
+      - name と bio をそれぞれあいまい検索するキーワード
+  - response:
+    - リスト
+- `/users`
+  - 概要: ログインユーザを削除する。
+  - method: delete
+  - response:
+    - メッセージ
+- `/users`
+  - 概要: ログインユーザを編集する。
+  - method: patch
+  - body:
+    - bio
+      - 最大 128 文字
+  - response:
+    - モデル
+- `/threads`
+  - 概要: スレッドを作成する。
+  - method: post
+  - body:
+    - title
+      - 最大 64 文字
+  - response:
+    - モデル
+- `/threads`
+  - 概要: スレッド一覧を取得する。
+  - method: get
+  - query string:
+    - q (任意)
+      - title と ip_address をそれぞれあいまい検索するキーワード
+  - response:
+    - リスト
+- `/threads/{id}`
+  - 概要: スレッドを取得する。リプライは含まない。
+  - method: get
+  - url parameter:
+    - id
+  - response:
+    - モデル
+- `/threads/{id}`
+  - 概要: 自分の thread を編集する。thread の削除はできない。
+  - method: patch
+  - url parameter:
+    - id
+  - body:
+    - title
+      - 最大 64 文字
+  - response:
+    - モデル
+- `/replies`
+  - 概要: スレッド id を指定してリプライ一覧を取得する。
+  - method: get
+  - query string:
+    - thread_id
+    - q (任意)
+      - text と ip_address をそれぞれあいまい検索するキーワード(投稿者の情報は検索対象に含まれない)
+  - response:
+    - リスト
+- `/replies/{id}`
+  - 概要: リプライを取得する。
+  - method: get
+  - response:
+    - モデル
+- `/replies`
+  - 概要: リプライを作成する。
+  - method: post
+  - body:
+    - thread_id
+    - text
+      - 最大 1024 文字
+  - response:
+    - モデル
+- `/replies/{id}`
+  - 概要: リプライを削除する。
+  - method: delete
+  - url parameter:
+    - id
+  - response:
+    - メッセージ
+- `/replies/{id}`
+  - 概要: リプライを編集する。
+  - method: patch
+  - url parameter:
+    - id
+  - body:
+    - text
+      - 最大 1024 文字
+  - response:
+    - メッセージ

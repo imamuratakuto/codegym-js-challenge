@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>掲示板frontend</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>login</td>
+        <td><input type="text" id="loginName" placeholder="name" /></td>
+        <td><input type="text" id="loginPassword" placeholder="password" /></td>
+        <td><button id="loginSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>register</td>
+        <td><input type="text" id="registerName" placeholder="name" /></td>
+        <td><input type="text" id="registerBio" placeholder="bio" /></td>
+        <td><input type="text" id="registerPassword" placeholder="password" /></td>
+        <td><button id="registerSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>logout</td>
+        <td><button id="logoutSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>usersIdGet</td>
+        <td><input type="number" id="usersIdGetId" placeholder="id" /></td>
+        <td><button id="usersIdGetSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>usersGet</td>
+        <td><button id="usersGetSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>threadsGet</td>
+        <td><input type="number" id="threadsGetPerPage" placeholder="perPage" /></td>
+        <td><input type="number" id="threadsGetPage" placeholder="page" /></td>
+        <td><input type="text" id="threadsGetQ" placeholder="q" /></td>
+        <td><button id="threadsGetSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>threadsPost</td>
+        <td><input type="text" id="threadsPostTitle" placeholder="title" /></td>
+        <td><button id="threadsPostSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>repliesGet</td>
+        <td><input type="number" id="repliesGetThreadId" placeholder="threadId" /></td>
+        <td><button id="repliesGetSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>repliesPost</td>
+        <td><input type="number" id="repliesPostThreadId" placeholder="threadId" /></td>
+        <td><input type="text" id="repliesPostText" placeholder="text" /></td>
+        <td><button id="repliesPostSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>repliesPatch</td>
+        <td><input type="number" id="repliesPatchId" placeholder="id" /></td>
+        <td><input type="text" id="repliesPatchText" placeholder="text" /></td>
+        <td><button id="repliesPatchSubmit">送信</button></td>
+      </tr>
+      <!-- 上記のコードは参考・サンプルです。idなどを自分の作成したjsファイルと揃えてください。 -->
+      <!-- 提出時に上記のサンプルコードが残っている必要はありません。 -->
+      <!-- 上記を参考に自分なりに掲示板を作成してください。 -->
+    </table>
+    <script src="main.js"></script>
+  </body>
+</html>

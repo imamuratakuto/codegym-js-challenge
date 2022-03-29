@@ -1,0 +1,25 @@
+<?php
+
+namespace Tests\Feature;
+
+use Tests\TestCase;
+
+class ExampleTest extends TestCase
+{
+    public function test_example()
+    {
+        $this->assertTrue(true);
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function _test_example()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+}
