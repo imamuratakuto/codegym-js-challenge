@@ -10,7 +10,7 @@ const getUrl = () => {
     const weather_text = document.getElementById("weather");
     const temp_text = document.getElementById("temp");
     const humidity_text = document.getElementById("humidity");
-    weather_text.innerHTML = [data.weather[0]["description"]];
+    weather_text.innerHTML = data.weather[0]["description"];
     temp_text.innerHTML = data.main["temp"] + "℃";
     humidity_text.innerHTML = data.main["humidity"] + "%";
   };
