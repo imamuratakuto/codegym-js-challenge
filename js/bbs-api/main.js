@@ -1,15 +1,15 @@
 "use strict";
 
 const p = console.log;
-const host = "http://52.195.0.124:20780"; //ローカルで掲示板を動かす場合の設定
+const host = "http://13.112.93.74:20780"; //ローカルで掲示板を動かす場合の設定
 
 //以下にコードを書きましょう。
 const checkName = (name) => {
   if (name === "") {
-    alert("入力されていない欄があります");
+    alert("nameが入力されていません");
     return false;
-  } else if (name.length > 17) {
-    alert("16文字以内で入力してください");
+  } else if (name.length > 16) {
+    alert("nameは16文字以内で入力してください");
     return false;
   } else {
     return true;
@@ -18,10 +18,10 @@ const checkName = (name) => {
 
 const checkBio = (bio) => {
   if (bio === "") {
-    alert("入力されていない欄があります");
+    alert("bioが入力されていません");
     return false;
-  } else if (bio.length > 129) {
-    alert("128文字以内で入力してください");
+  } else if (bio.length > 128) {
+    alert("bioは128文字以内で入力してください");
     return false;
   } else {
     return true;
@@ -30,7 +30,7 @@ const checkBio = (bio) => {
 
 const checkPassword = (password) => {
   if (password === "") {
-    alert("入力されていない欄があります");
+    alert("passwordが入力されていません");
     return false;
   } else {
     return true;
@@ -58,8 +58,8 @@ registerSubmit.addEventListener("click", () => {
           body: JSON.stringify(newUserData),
         })
           .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => console.log(error));
+          .then(console.log)
+          .catch(console.log);
       }
     }
   }
@@ -76,8 +76,11 @@ loginSubmit.addEventListener("click", () => {
     body: JSON.stringify(loginUserData),
   })
     .then((response) => response.json())
-    .then((data) => localStorage.setItem("token", data.token))
-    .catch((error) => console.log(error));
+    .then((json) => {
+      console.log(json);
+      localStorage.setItem("token", json.token);
+    })
+    .catch(console.log);
 });
 
 const logoutSubmit = document.getElementById("logoutSubmit");
@@ -87,8 +90,8 @@ logoutSubmit.addEventListener("click", () => {
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    .then(console.log)
+    .catch(console.log);
   localStorage.removeItem("token");
 });
 
@@ -102,8 +105,8 @@ usersIdGetSubmit.addEventListener("click", () => {
     },
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    .then(console.log)
+    .catch(console.log);
 });
 
 const usersGetSubmit = document.getElementById("usersGetSubmit");
@@ -129,14 +132,13 @@ usersGetSubmit.addEventListener("click", () => {
   const param = new URLSearchParams(params);
   url.search = param;
 
-  console.log(url.href);
   fetch(url.href, {
     method: "GET",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    .then(console.log)
+    .catch(console.log);
 });
 
 const usersDeleteSubmit = document.getElementById("usersDeleteSubmit");
@@ -146,8 +148,8 @@ usersDeleteSubmit.addEventListener("click", () => {
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    .then(console.log)
+    .catch(console.log);
   localStorage.removeItem("token");
 });
 
@@ -165,7 +167,7 @@ usersEditSubmit.addEventListener("click", () => {
       body: JSON.stringify(usersEditBioData),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .then(console.log)
+      .catch(console.log);
   }
 });
