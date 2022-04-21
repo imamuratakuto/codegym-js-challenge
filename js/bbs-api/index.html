@@ -51,18 +51,37 @@
         <td><button id="usersEditSubmit">送信</button></td>
       </tr>
       <tr>
+        <td>threadsCreate</td>
+        <td>
+          <input type="text" id="threadsCreateTitle" placeholder="title" />
+        </td>
+        <td><button id="threadsCreateSubmit">作成</button></td>
+      </tr>
+      <tr>
         <td>threadsGet</td>
         <td>
           <input type="number" id="threadsGetPerPage" placeholder="perPage" />
         </td>
         <td><input type="number" id="threadsGetPage" placeholder="page" /></td>
-        <td><input type="text" id="threadsGetQ" placeholder="q" /></td>
+        <td>
+          <input
+            type="text"
+            id="threadsGetQ"
+            placeholder="title or ip_address"
+          />
+        </td>
         <td><button id="threadsGetSubmit">送信</button></td>
       </tr>
       <tr>
-        <td>threadsPost</td>
-        <td><input type="text" id="threadsPostTitle" placeholder="title" /></td>
-        <td><button id="threadsPostSubmit">送信</button></td>
+        <td>threadsIdGet</td>
+        <td><input type="number" id="threadsId" placeholder="threads_id" /></td>
+        <td><button id="threadsIdGetSubmit">送信</button></td>
+      </tr>
+      <tr>
+        <td>threadsEdit</td>
+        <td><input type="number" id="threadsEditID" placeholder="threads_id" /></td>
+        <td><input type="text" id="threadsEditTitle" placeholder="title" /></td>
+        <td><button id="threadsEditSubmit">更新</button></td>
       </tr>
       <tr>
         <td>repliesGet</td>
@@ -93,6 +112,8 @@
       <!-- 提出時に上記のサンプルコードが残っている必要はありません。 -->
       <!-- 上記を参考に自分なりに掲示板を作成してください。 -->
     </table>
-    <script src="main.js"></script>
+    <script src="host.js"></script>
+    <script src="users.js"></script>
+    <script src="threads.js"></script>
   </body>
 </html>
